@@ -1,1 +1,18 @@
-
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: pipelines-vote-api
+spec:
+  destination:
+    name: ''
+    namespace: pipelines-tutorial
+    server: 'https://kubernetes.default.svc'
+  source:
+    path: apps/base/pipelines-vote-api/
+    repoURL: 'https://github.com/niksharma20/Openshift-GitOps'
+    targetRevision: main
+  project: default
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
